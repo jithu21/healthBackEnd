@@ -5,8 +5,14 @@ var BSON = require('mongodb').BSON;
 var ObjectID = require('mongodb').ObjectID;
 
 EmployeeProvider = function(host, port) {
-  this.db= new Db('node-mongo-employee', new Server(host, port, {safe: false}, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+  this.db= new Db('healthme', new Server("ds139979.mlab.com", 39979, {safe: false}, {auto_reconnect: true}, {}));
+  this.db.open(function(err, db) {
+          // Authenticate
+          db.authenticate('jithu', 'GUPTA21!a', function(err, result) {
+              console.log(result);
+          });
+  });
+
 };
 
 
